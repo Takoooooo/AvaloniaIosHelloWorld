@@ -114,11 +114,16 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
+  <Target Name="Pack" />
   <ItemGroup>
     <PackageReference Include="Avalonia.iOS">
       <Version>0.10.0</Version>
     </PackageReference>
+	<PackageReference Include="HarfBuzzSharp" Version="2.6.1.7" />
+    <PackageReference Condition="'$(IncludeLinuxSkia)' == 'true'" Include="HarfBuzzSharp.NativeAssets.Linux" Version="2.6.1.7" />
     <PackageReference Include="SkiaSharp.HarfBuzz" Version="2.80.2" />
+	<PackageReference Include="SkiaSharp" Version="2.80.2" />
+    <PackageReference Condition="'$(IncludeLinuxSkia)' == 'true'" Include="SkiaSharp.NativeAssets.Linux" Version="2.80.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AvaloniaIosHelloWorld\AvaloniaIosHelloWorld.csproj">
@@ -127,7 +132,4 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\build\LegacyProject.targets" />
-  <Import Project="..\build\SkiaSharp.props" />
-  <Import Project="..\build\HarfBuzzSharp.props" />
 </Project>
